@@ -4,6 +4,7 @@
 int generateId(void);
 void printParticipantDetails(void);
 void printWelcomeMessage(void);
+void createParticipant(void);
 
 enum Gender {MALE, FEMALE} Gender;
 enum Event {RUNNING, CYCLING, SWIMMING} Event;
@@ -70,17 +71,12 @@ int generateId()
 
 //Print Participant Details
 void printParticipantDetails()
-{
-    //TODO: Print the datails in a table
-    if(participant.name != '\0' && participant.school != '\0')
-    {
-        printParticipantDetailsTable();
-        printf("Participant id: %d\n", participant.id);
-        printf("Participant name: %s\n", participant.name);
-        printf("Participant school: %s\n", participant.school);
-        printf("Participant score: %d\n", participant.score);
-        printf("Participant gender: %c\n", participant.gender);
-    }
+{   
+    printf("Participant id: %d\n", participant.id);
+    printf("Participant name: %s\n", participant.name);
+    printf("Participant school: %s\n", participant.school);
+    printf("Participant score: %d\n", participant.score);
+    printf("Participant gender: %c\n", participant.gender);
     //TODO: validate gender & score
 }
 
