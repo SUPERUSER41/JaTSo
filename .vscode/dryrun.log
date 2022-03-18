@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/dan/JaTSo'
+make: Leaving directory `/Users/dan/JaTSo'
+ 
+make: *** No targets.  Stop.
+ 
