@@ -1,0 +1,14 @@
+{
+    "name": "jatso3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "make && bin/main",
+      "clean":"make clean"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+  
