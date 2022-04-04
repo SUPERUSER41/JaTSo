@@ -26,7 +26,7 @@ int main()
     addParticipant(&participants, participant);
     printAllParticipants(participants);
 
-    int age = getParticipantAge(participant->dob.year);
+    // int age = getParticipantAge(participant->dob.year);
 
     return 0;
 }
