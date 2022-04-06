@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
 #include "../headers/participant.h"
 #include "../headers/date.h"
@@ -18,6 +19,7 @@ Participant InitParticipant()
     p.dob = &dob;
     p.Destroy = &Destroy;
     p.Register = &Register;
+    p.GetAge = &GetAge;
     p.PrintParticipant = &PrintParticipant;
     return p;
 }
@@ -28,6 +30,17 @@ void Register(Participant *p, char *name, char *school, char gender, Date *dob)
     p->school = school;
     p->gender = gender;
     p->dob = dob;
+}
+int GetAge(int birthYear)
+{
+    int age = 0;
+    time_t t = time(NULL);
+    struct tm *currentTime = localtime(&t);
+    if (birthYear != 0)
+    {
+        age = (currentTime->tm_year + MIN_YR) - birthYear;
+    }
+    return age;
 }
 void PrintParticipant(Participant *p)
 {
