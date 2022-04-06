@@ -18,6 +18,7 @@ Participant InitParticipant()
     p.dob = &dob;
     p.Destroy = &Destroy;
     p.Register = &Register;
+    p.PrintParticipant = &PrintParticipant;
     return p;
 }
 void Register(Participant *p, char *name, char *school, char gender, Date *dob)
