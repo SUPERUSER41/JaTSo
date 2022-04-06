@@ -5,13 +5,14 @@
 typedef struct Competition
 {
     char *name;
-    void (*CreateCompetition)(struct Competition *c, char *name);
+    int participantId;
+    void (*RegisterCompetition)(struct Competition *c, Participant *p);
     void (*PrintCompetition)(struct Competition *c);
     void (*DestroyCompetition)(struct Competition *c);
 } Competition;
 
 Competition InitCompetition();
-void CreateCompetition(Competition *c, char *name);
+void RegisterCompetition(Competition *c, Participant *p);
 void PrintCompetition(Competition *c);
 void DestroyCompetition(Competition *c);
 #endif

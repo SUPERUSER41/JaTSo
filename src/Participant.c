@@ -26,12 +26,15 @@ Participant InitParticipant()
 }
 void RegisterParticipant(Participant *p, char *name, char *school, char gender, Date *dob)
 {
+    Competition c = InitCompetition();
+
     p->id = 0;
     p->name = name;
     p->school = school;
     p->gender = gender;
     p->dob = dob;
-    int age = p->GetAge(p);
+
+    c.RegisterCompetition(&c, p);
 }
 int GetAge(Participant *p)
 {
