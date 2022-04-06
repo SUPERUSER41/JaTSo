@@ -19,6 +19,7 @@ typedef struct Participant
 Participant InitParticipant();
 void RegisterParticipant(Participant *p, char *name, char *school, char gender, Date *dob);
 int GetAge(Participant *p);
+int GenerateId(Participant *p);
 void PrintParticipant(Participant *p);
 void DestroyParticipant(Participant *p);
 #endif

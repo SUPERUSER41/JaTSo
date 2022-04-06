@@ -28,7 +28,7 @@ void RegisterParticipant(Participant *p, char *name, char *school, char gender, 
 {
     Competition c = InitCompetition();
 
-    p->id = 0;
+    p->id = GenerateId(p);
     p->name = name;
     p->school = school;
     p->gender = gender;
@@ -47,6 +47,22 @@ int GetAge(Participant *p)
     }
     return age;
 }
+int GenerateId(Participant *p)
+{
+    int id = 0;
+    FILE *fp = fopen("./data/participants.txt", "r");
+    if (fp == NULL)
+    {
+        printf("The file could not be opened\n");
+        exit(1);
+    }
+    while (fscanf(fp, "%d,%s,%s,%c,%d,%d,%d", &p->id, p->name, p->school, &p->gender, &p->dob->month, &p->dob->day, &p->dob->year) != EOF)
+    {
+        id = p->id;
+    }
+    fclose(fp);
+    return id + 1;
+}
 void PrintParticipant(Participant *p)
 {
     char dob[10];
@@ -56,6 +72,6 @@ void PrintParticipant(Participant *p)
 void DestroyParticipant(Participant *p)
 {
     p->RegisterParticipant = NULL;
+    p->GetAge = NULL;
     p->DestroyParticipant = NULL;
-    p->dob = NULL;
 }
