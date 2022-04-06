@@ -31,14 +31,14 @@ void Register(Participant *p, char *name, char *school, char gender, Date *dob)
     p->gender = gender;
     p->dob = dob;
 }
-int GetAge(int birthYear)
+int GetAge(Participant *p)
 {
     int age = 0;
     time_t t = time(NULL);
     struct tm *currentTime = localtime(&t);
-    if (birthYear != 0)
+    if (p != NULL)
     {
-        age = (currentTime->tm_year + MIN_YR) - birthYear;
+        age = (currentTime->tm_year + MIN_YR) - p->dob->year;
     }
     return age;
 }

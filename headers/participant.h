@@ -11,14 +11,14 @@ typedef struct Participant
     char gender;
     Date *dob;
     void (*Register)(struct Participant *p, char *name, char *school, char gender, Date *dob);
-    int (*GetAge)(int birthYear);
+    int (*GetAge)(struct Participant *p);
     void (*PrintParticipant)(struct Participant *p);
     void (*Destroy)(struct Participant *p);
 } Participant;
 
 Participant InitParticipant();
 void Register(Participant *p, char *name, char *school, char gender, Date *dob);
-int GetAge(int birthYear);
+int GetAge(Participant *p);
 void PrintParticipant(Participant *p);
 void Destroy(Participant *p);
 #endif
