@@ -10,11 +10,13 @@ typedef struct Participant
     char *school;
     char gender;
     Date *dob;
-    void (*Register)(struct Participant *p, char *name, char *school, char gender, Date *dob;);
+    void (*Register)(struct Participant *p, char *name, char *school, char gender, Date *dob);
+    void (*PrintParticipant)(struct Participant *p);
     void (*Destroy)(struct Participant *p);
 } Participant;
 
-static Participant InitParticipant();
-static void Register(Participant *p, char *name, char *school, char gender, Date *dob);
-static void Destroy(Participant *p);
+Participant InitParticipant();
+void Register(Participant *p, char *name, char *school, char gender, Date *dob);
+void Destroy(Participant *p);
+void PrintParticipant(Participant *p);
 #endif
