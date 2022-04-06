@@ -44,7 +44,48 @@ void registerParticipant()
     competition = createCompetition(age, participant);
     printCompetition(competition, age);
 
+    // TODO: enter time for a participant for a particular event
+
     pause();
+}
+
+void registerParticipantTime()
+{
+    int event, id;
+    printf("Enter participant id:\n");
+    scanf("%d", &id);
+    // TODO: search participant
+    do
+    {
+        clrscr();
+        printf("-------------------------\n");
+        printf("\tSelect Event\n");
+        printf("-------------------------\n");
+        printf("1. Swimming\n");
+        printf("2. Cycling\n");
+        printf("3. Running\n");
+        printf("0. Back\n");
+        printf("Enter your choice: \n");
+        scanf("%d", &event);
+        switch (event)
+        {
+        case 1:
+            printf("Enter time for swimming event:\n");
+            scanf("%d", &time);
+            p.time = time;
+            break;
+        case 2:
+            printf("Enter time for swimming event:\n");
+            scanf("%d", &time);
+            p.time = time;
+            break;
+        case 3:
+            printf("Enter time for swimming event:\n");
+            scanf("%d", &time);
+            p.time = time;
+            break;
+        }
+    } while (event != 0);
 }
 
 void menu()
@@ -86,6 +127,7 @@ void menu()
                 printf("-----------------------------------\n");
                 printf("1. Register Participant\n");
                 printf("2. Search Participants\n");
+                printf("3. Enter Participant Time\n");
                 printf("0. Back\n");
                 printf("Enter your choice:\n");
                 scanf("%d", &ch3);
@@ -98,6 +140,9 @@ void menu()
 
                 case 2:
                     // TODO: searchParticipant();
+                    break;
+                case 3:
+                    registerParticipantTime();
                     break;
                 }
             } while (ch3 != 0);
