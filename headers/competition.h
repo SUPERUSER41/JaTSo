@@ -2,15 +2,16 @@
 #define COMPETITION_H
 
 #include "participant.h"
-
 typedef struct Competition
 {
-    char name[50];
-    Participant *participants;
+    char *name;
+    void (*CreateCompetition)(struct Competition *c, char *name);
+    void (*PrintCompetition)(struct Competition *c);
+    void (*DestroyCompetition)(struct Competition *c);
 } Competition;
 
-void printCompetition(Competition *c, int age);
-
-Competition *createCompetition(int age, Participant *p);
-
+Competition InitCompetition();
+void CreateCompetition(Competition *c, char *name);
+void PrintCompetition(Competition *c);
+void DestroyCompetition(Competition *c);
 #endif

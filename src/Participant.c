@@ -4,6 +4,7 @@
 #include <string.h>
 #include "../headers/participant.h"
 #include "../headers/date.h"
+#include "../headers/competition.h"
 
 Participant InitParticipant()
 {
@@ -17,19 +18,20 @@ Participant InitParticipant()
     p.school = "";
     p.gender = 'M';
     p.dob = &dob;
-    p.Destroy = &Destroy;
-    p.Register = &Register;
+    p.DestroyParticipant = &DestroyParticipant;
+    p.RegisterParticipant = &RegisterParticipant;
     p.GetAge = &GetAge;
     p.PrintParticipant = &PrintParticipant;
     return p;
 }
-void Register(Participant *p, char *name, char *school, char gender, Date *dob)
+void RegisterParticipant(Participant *p, char *name, char *school, char gender, Date *dob)
 {
     p->id = 0;
     p->name = name;
     p->school = school;
     p->gender = gender;
     p->dob = dob;
+    int age = p->GetAge(p);
 }
 int GetAge(Participant *p)
 {
@@ -48,9 +50,9 @@ void PrintParticipant(Participant *p)
     sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
     printf("Id:\t\t%d\nName:\t\t%s\nSchool:\t\t%s\nGender:\t\t%c\nDob:\t\t%s\n", p->id, p->name, p->school, p->gender, dob);
 }
-void Destroy(Participant *p)
+void DestroyParticipant(Participant *p)
 {
-    p->Register = NULL;
-    p->Destroy = NULL;
+    p->RegisterParticipant = NULL;
+    p->DestroyParticipant = NULL;
     p->dob = NULL;
 }
