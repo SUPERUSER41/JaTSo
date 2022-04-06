@@ -17,8 +17,7 @@ void clrscr()
 void registerParticipant()
 {
     Participant p, *participant = NULL, *participants = NULL;
-
-    Competition kidsOfSteel = {.name = "Kids of steel"}, ironKids = {.name = "Iron Kids"}, castIronKids = {.name = "Cast Iron Kids"};
+    Competition *competition;
 
     fflush(stdin);
     printf("Enter name:\n");
@@ -37,22 +36,13 @@ void registerParticipant()
     int id = generateId(participants, participant);
     participant = createParticipant(id, p.name, p.school, p.gender, &p.dob);
     addParticipant(&participants, participant);
+    clrscr();
     printAllParticipants(participants);
 
     int age = getParticipantAge(participant->dob.year);
 
-    if (age >= 6 && age <= 8)
-    {
-        kidsOfSteel.participants = participant;
-    }
-    else if (age >= 9 && age <= 11)
-    {
-        ironKids.participants = participant;
-    }
-    else if (age >= 12 && age <= 15)
-    {
-        castIronKids.participants = participant;
-    }
+    competition = createCompetition(age, participant);
+    printCompetition(competition, age);
 
     pause();
 }

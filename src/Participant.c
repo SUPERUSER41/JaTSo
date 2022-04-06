@@ -44,6 +44,9 @@ void printAllParticipants(Participant *participants)
     {
         char dob[10];
         sprintf(dob, "%d/%d/%d", p->dob.month, p->dob.day, p->dob.year);
+        printf("-------------------------\n");
+        printf("\tParticipants\n");
+        printf("-------------------------\n");
         printf("Id:\t\t%d\nName:\t\t%s\nSchool:\t\t%s\nGender:\t\t%c\nDob:\t\t%s\n", p->id, p->name, p->school, p->gender, dob);
         p = p->next;
     }
