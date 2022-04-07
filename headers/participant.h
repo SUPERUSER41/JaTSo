@@ -10,6 +10,8 @@ typedef struct Participant
     char school[50];
     char gender;
     Date *dob;
+    char eventType[50];
+    int score;
     void (*RegisterParticipant)(struct Participant *p, char *name, char *school, char gender, Date *dob);
     void (*SaveParticipant)(struct Participant *p);
     int (*GetAge)(struct Participant *p);

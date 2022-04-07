@@ -21,6 +21,8 @@ Participant InitParticipant()
     strcpy(p.school, "");
     p.gender = 'M';
     p.dob = &dob;
+    strcpy(p.eventType, "");
+    p.score = 0;
     p.RegisterParticipant = &RegisterParticipant;
     p.SaveParticipant = &SaveParticipant;
     p.GetAge = &GetAge;
