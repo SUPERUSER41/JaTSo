@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include "../headers/date.h"
 
+Date InitDate()
+{
+    Date d;
+    d.month = 1;
+    d.day = 1;
+    d.year = MIN_YR;
+    return d;
+}
+
 // Function to check leap year.
 // Function returns 1 if leap year
 int isLeapYear(int year)
