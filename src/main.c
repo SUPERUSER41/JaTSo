@@ -15,6 +15,9 @@ int main()
         printf("-------------------------\n");
         printf("1. Register Participant\n");
         printf("2. View Participant\n");
+        printf("3. Enter Participant time\n");
+        printf("4. View Best Participant\n");
+        printf("5. View Winner For Each Competition\n");
         printf("0. Exit\n");
         scanf("%d", &ch1);
         switch (ch1)
@@ -24,6 +27,15 @@ int main()
             break;
         case 2:
             p.PrintParticipant(&p);
+            break;
+        case 3:
+            printf("Enter participant time:\n");
+            break;
+        case 4:
+            printf("Display results:\n");
+            break;
+        case 5:
+            printf("Display results:\n");
             break;
         }
     } while (ch1 != 0);
