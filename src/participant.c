@@ -6,8 +6,8 @@
 #include "../headers/participant.h"
 #include "../headers/date.h"
 
-const char *PARTICIPANT_FORMAT_OUT = "%d,%s,%c,%s,%s,%s,%d,%d\n";
-const char *PARTICIPANT_FORMAT_IN = "%d,%[^,],%[^,],%c,%s\n";
+const char *PARTICIPANT_FORMAT_OUT = "%d,%s,%s,%c,%d,%d,%d\n";
+const char *PARTICIPANT_FORMAT_IN = "%d,%[^,],%[^,],%c,%d,%d,%d\n";
 
 const char *KIDS_OF_STEEL = "Kids of Steel";
 const char *IRON_KIDS = "Iron Kids";
@@ -34,6 +34,7 @@ Participant InitParticipant()
     p.IsValidAge = &IsValidAge;
     p.AssignCompetition = &AssignCompetition;
     p.PrintParticipant = &PrintParticipant;
+    p.GenerateId = &GenerateId;
     return p;
 }
 
@@ -41,6 +42,7 @@ void RegisterParticipant(Participant *p)
 {
     clrscr();
     fflush(stdin);
+    p->id = p->GenerateId(p);
     printf("Enter name:\n");
     scanf("%[^\n]s", p->name);
     printf("Enter gender:\n");
@@ -71,7 +73,7 @@ void SaveParticipant(Participant *p)
     }
     char dob[10];
     sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
-    fprintf(fp, PARTICIPANT_FORMAT_OUT, p->id, p->name, p->gender, dob, p->school, p->competition, p->score, p->totalScore);
+    fprintf(fp, PARTICIPANT_FORMAT_OUT, p->id, p->name, p->school, p->gender, p->dob->month, p->dob->day, p->dob->year);
     fseek(fp, 0, SEEK_SET);
     fclose(fp);
 }
@@ -113,12 +115,41 @@ void AssignCompetition(int age, Participant *p)
     }
 }
 
+int GenerateId(Participant *p)
+{
+    int id = 0;
+    FILE *fp = fopen("./data/participants.csv", "r");
+    if (fp == NULL)
+    {
+        printf("The file could not be opened\n");
+        exit(1);
+    }
+    char dob[10];
+    sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
+    while (fscanf(fp, PARTICIPANT_FORMAT_IN, &p->id, p->name, p->school, &p->gender, &p->dob->month, &p->dob->day, &p->dob->year) != EOF)
+    {
+        id = p->id;
+    }
+    fseek(fp, 0, SEEK_SET);
+    fclose(fp);
+    return id + 1;
+}
+
 void PrintParticipant(Participant *p)
 {
     clrscr();
     char dob[10];
     sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
     printf("Id:\t\t%d\nName:\t\t%s\nSchool:\t\t%s\nGender:\t\t%c\nDob:\t\t%s\n", p->id, p->name, p->school, p->gender, dob);
+    pause();
+}
+
+void PrintBestTriathlete()
+{
+    clrscr();
+    printf("======================================================================");
+    printf("Swimming\t\tCycling\t\tRunning\t\t");
+    printf("======================================================================");
     pause();
 }
 
