@@ -1,9 +1,8 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/dan/JaTSo'
-clang -Wall -g -c src/Participant.c -o obj/Participant.o
 clang -Wall -g -c src/competition.c -o obj/competition.o
-clang -Wall -g -c src/date.c -o obj/date.o
 clang -Wall -g -c src/main.c -o obj/main.o
-clang -Wall -g  obj/Participant.o  obj/competition.o  obj/date.o  obj/main.o -o bin/main
+clang -Wall -g -c src/participant.c -o obj/participant.o
+clang -Wall -g  obj/competition.o  obj/main.o  obj/participant.o -o bin/main
 make: Leaving directory `/Users/dan/JaTSo'
  

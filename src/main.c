@@ -1,7 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "../headers/participant.h"
+#include "../headers/competition.h"
+#include "../headers/date.h"
 
 int main()
 {
-    printf("Hello world\n");
+    Participant p = InitParticipant();
+    p.RegisterParticipant(&p);
     return 0;
 }
