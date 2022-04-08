@@ -13,7 +13,7 @@ typedef struct Participant
     char eventName[25];
     int score;
     int totalScore;
-    int competitionId;
+    char competition[25];
     void (*RegisterParticipant)(struct Participant *p);
     void (*SaveParticipant)(struct Participant *p);
 } Participant;
