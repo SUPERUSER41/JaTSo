@@ -6,8 +6,9 @@
 #include "../headers/participant.h"
 #include "../headers/date.h"
 
-const char *PARTICIPANT_FORMAT_OUT = "%d,%s,%s,%c,%d,%d,%d\n";
-const char *PARTICIPANT_FORMAT_IN = "%d,%[^,],%[^,],%c,%d,%d,%d\n";
+//[id, name, gender, dob, school, competition, swimTime, cycleTime, runTime, score, totalScore]
+const char *PARTICIPANT_FORMAT_OUT = "%d,%s,%c,%s,%s,%s,%d,%d,%d,%d\n";
+const char *PARTICIPANT_FORMAT_IN = "%d,%[^,],%c,%[^,],%[^,],%[^,],%d,%d,%d,%d\n";
 
 const char *KIDS_OF_STEEL = "Kids of Steel";
 const char *IRON_KIDS = "Iron Kids";
@@ -18,7 +19,6 @@ Participant InitParticipant()
     Participant p;
     Date *dob = malloc(sizeof(Date));
     p.id = 0;
-    p.score = 0;
     p.totalScore = 0;
     p.swimTime = 0;
     p.runTime = 0;
@@ -35,6 +35,7 @@ Participant InitParticipant()
     p.AssignCompetition = &AssignCompetition;
     p.PrintParticipant = &PrintParticipant;
     p.GenerateId = &GenerateId;
+    p.SearchParticipant = &SearchParticipant;
     return p;
 }
 
@@ -73,7 +74,8 @@ void SaveParticipant(Participant *p)
     }
     char dob[10];
     sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
-    fprintf(fp, PARTICIPANT_FORMAT_OUT, p->id, p->name, p->school, p->gender, p->dob->month, p->dob->day, p->dob->year);
+    //[id, name, gender, dob, school, competition, swimTime, cycleTime, runTime, score, totalScore]
+    fprintf(fp, PARTICIPANT_FORMAT_OUT, p->id, p->name, p->gender, p->school, dob, p->competition, p->swimTime, p->cycleTime, p->runTime, p->totalScore);
     fseek(fp, 0, SEEK_SET);
     fclose(fp);
 }
@@ -125,14 +127,44 @@ int GenerateId(Participant *p)
         exit(1);
     }
     char dob[10];
-    sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
-    while (fscanf(fp, PARTICIPANT_FORMAT_IN, &p->id, p->name, p->school, &p->gender, &p->dob->month, &p->dob->day, &p->dob->year) != EOF)
+    // sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
+    //[id, name, gender, dob, school, competition, swimTime, cycleTime, runTime, totalScore]
+    while (fscanf(fp, PARTICIPANT_FORMAT_IN, &p->id, p->name, &p->gender, dob, p->school, p->competition, &p->swimTime, &p->cycleTime, &p->runTime, &p->totalScore) != EOF)
     {
         id = p->id;
     }
     fseek(fp, 0, SEEK_SET);
     fclose(fp);
     return id + 1;
+}
+
+void SearchParticipant()
+{
+    Participant p;
+    int id;
+    bool isFound = false;
+    FILE *fp = fopen("./data/participants.csv", "r");
+
+    clrscr();
+    printf("Enter id to search:\n");
+    scanf("%d", &id);
+
+    while (fscanf(fp, PARTICIPANT_FORMAT_OUT, &p.id, p.name, p.school, &p.gender, &p.dob->month, &p.dob->day, &p.dob->year) != EOF)
+    {
+        if (p.id == id)
+        {
+            isFound = true;
+            PrintParticipant(&p);
+        }
+    }
+
+    if (!isFound)
+    {
+        printf("Participant cannot be found\n");
+        pause();
+    }
+    fseek(fp, 0, SEEK_SET);
+    fclose(fp);
 }
 
 void PrintParticipant(Participant *p)
