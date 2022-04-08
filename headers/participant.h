@@ -11,10 +11,12 @@ typedef struct Participant
     char gender;
     Date *dob;
     char school[25];
-    char eventName[25];
     int score;
     int totalScore;
     char competition[25];
+    int swimTime;
+    int runTime;
+    int cycleTime;
     void (*RegisterParticipant)(struct Participant *p);
     void (*SaveParticipant)(struct Participant *p);
     int (*CalculateParticipantAge)(int birthYear);

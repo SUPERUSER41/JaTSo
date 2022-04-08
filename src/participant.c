@@ -30,11 +30,13 @@ Participant InitParticipant()
     p.id = 0;
     p.score = 0;
     p.totalScore = 0;
+    p.swimTime = 0;
+    p.runTime = 0;
+    p.cycleTime = 0;
     p.gender = 'M';
     p.dob = dob;
     strcpy(p.name, "");
     strcpy(p.school, "");
-    strcpy(p.eventName, "");
     strcpy(p.competition, "Kids of Steel");
     p.RegisterParticipant = &RegisterParticipant;
     p.SaveParticipant = &SaveParticipant;
