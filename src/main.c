@@ -8,5 +8,6 @@ int main()
 {
     Participant p = InitParticipant();
     p.RegisterParticipant(&p);
+    p.PrintParticipant(&p);
     return 0;
 }

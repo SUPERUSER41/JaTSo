@@ -20,6 +20,7 @@ typedef struct Participant
     int (*CalculateParticipantAge)(int birthYear);
     bool (*IsValidAge)(int age);
     void (*AssignCompetition)(int age, struct Participant *p);
+    void (*PrintParticipant)(struct Participant *p);
 } Participant;
 
 Participant InitParticipant();
@@ -28,4 +29,5 @@ void SaveParticipant(Participant *p);
 int CalculateParticipantAge(int birthYear);
 bool IsValidAge(int age);
 void AssignCompetition(int age, Participant *p);
+void PrintParticipant(Participant *p);
 #endif

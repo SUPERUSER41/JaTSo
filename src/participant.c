@@ -41,6 +41,7 @@ Participant InitParticipant()
     p.CalculateParticipantAge = &CalculateParticipantAge;
     p.IsValidAge = &IsValidAge;
     p.AssignCompetition = &AssignCompetition;
+    p.PrintParticipant = &PrintParticipant;
     return p;
 }
 
@@ -117,4 +118,11 @@ void AssignCompetition(int age, Participant *p)
     {
         strcpy(p->competition, CAST_IRON_KIDS);
     }
+}
+
+void PrintParticipant(Participant *p)
+{
+    char dob[10];
+    sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
+    printf("Id:\t\t%d\nName:\t\t%s\nSchool:\t\t%s\nGender:\t\t%c\nDob:\t\t%s\n", p->id, p->name, p->school, p->gender, dob);
 }
