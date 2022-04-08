@@ -13,16 +13,6 @@ const char *KIDS_OF_STEEL = "Kids of Steel";
 const char *IRON_KIDS = "Iron Kids";
 const char *CAST_IRON_KIDS = "Cast Iron Kids";
 
-void pause()
-{
-    system("read -n1 -r -p \"Press any key to continue...\" key");
-}
-
-void clrscr()
-{
-    system("@cls||clear");
-}
-
 Participant InitParticipant()
 {
     Participant p;
@@ -49,6 +39,7 @@ Participant InitParticipant()
 
 void RegisterParticipant(Participant *p)
 {
+    clrscr();
     fflush(stdin);
     printf("Enter name:\n");
     scanf("%[^\n]s", p->name);
@@ -124,7 +115,19 @@ void AssignCompetition(int age, Participant *p)
 
 void PrintParticipant(Participant *p)
 {
+    clrscr();
     char dob[10];
     sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
     printf("Id:\t\t%d\nName:\t\t%s\nSchool:\t\t%s\nGender:\t\t%c\nDob:\t\t%s\n", p->id, p->name, p->school, p->gender, dob);
+    pause();
+}
+
+void pause()
+{
+    system("read -n1 -r -p \"Press any key to continue...\" key");
+}
+
+void clrscr()
+{
+    system("@cls||clear");
 }

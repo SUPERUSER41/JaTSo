@@ -32,4 +32,6 @@ int CalculateParticipantAge(int birthYear);
 bool IsValidAge(int age);
 void AssignCompetition(int age, Participant *p);
 void PrintParticipant(Participant *p);
+void pause();
+void clrscr();
 #endif
