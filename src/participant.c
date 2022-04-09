@@ -43,7 +43,6 @@ void RegisterParticipant(Participant *p)
 {
     clrscr();
     fflush(stdin);
-    p->id = p->GenerateId(p);
     printf("Enter name:\n");
     scanf("%[^\n]s", p->name);
     printf("Enter gender:\n");
@@ -60,6 +59,7 @@ void RegisterParticipant(Participant *p)
     printf("Enter school:\n");
     scanf("%[^\n]s", p->school);
     pause();
+    p->id = p->GenerateId(p);
     p->SaveParticipant(p);
 }
 
@@ -127,13 +127,11 @@ int GenerateId(Participant *p)
         exit(1);
     }
     char dob[10];
-    // sprintf(dob, "%d/%d/%d", p->dob->month, p->dob->day, p->dob->year);
     //[id, name, gender, dob, school, competition, swimTime, cycleTime, runTime, totalScore]
     while (fscanf(fp, PARTICIPANT_FORMAT_IN, &p->id, p->name, &p->gender, dob, p->school, p->competition, &p->swimTime, &p->cycleTime, &p->runTime, &p->totalScore) != EOF)
     {
         id = p->id;
     }
-    fseek(fp, 0, SEEK_SET);
     fclose(fp);
     return id + 1;
 }
